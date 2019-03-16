@@ -1,0 +1,16 @@
+<List>:
+    ListButton:
+        color:(0,0,0,1)
+        halign: 'left'
+        id: list_button
+        padding: (7,0)
+        size_hint_x: .8
+        text_size: self.size
+        valign: 'middle'
+        on_release: root.open_ProductsList()
+    ListButton:
+        color:(0,0,0,1)
+        id: remove_button
+        size_hint_x: .2
+        text: 'X'
+        on_release: self.release_callback(root.l_id)

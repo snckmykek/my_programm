@@ -1,0 +1,21 @@
+#:import Factory kivy.factory.Factory
+
+<ListContent>:
+    size_hint: (1., None)
+    orientation: 'vertical'
+    VisibleListOfLists:
+    FlatButton:
+        size_hint_y: None
+        height: 50
+        on_release: Factory.AddList().open()
+        color: (0,0,0,1)
+        text: 'Добавить список'.encode('cp1251').decode('utf-8')
+
+<ListOfLists>:
+    StackLayout:
+        height: self.minimum_height
+        id: lists
+        orientation: 'lr-tb'
+        padding: (0,3)
+        size_hint: (1, None)
+        spacing: 3

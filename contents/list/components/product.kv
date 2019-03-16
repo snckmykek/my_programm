@@ -1,0 +1,22 @@
+<Product>:
+    Button:
+        background_color: (1,1,1,1)
+        background_normal: ''
+        background_down: ''
+        color:(0,0,0,1)
+        halign: 'left'
+        id: prod_button
+        padding: (7,0)
+        size_hint_x: .8
+        text_size: self.size
+        valign: 'middle'
+        on_release: self.release_callback2(root.p_id)
+    Button:
+        background_color: (1,1,1,1)
+        background_normal: ''
+        background_down: ''
+        color:(0,0,0,1)
+        id: remove_button
+        size_hint_x: .2
+        text: 'X'
+        on_release: self.release_callback(root.p_id)

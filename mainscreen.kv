@@ -1,0 +1,47 @@
+#: kivy 1.9.2
+
+BoxLayout:
+    orientation: 'vertical'
+    canvas.before:
+        Color:
+            rgba: (.93,.93,.93,1)
+        Rectangle:
+            size: self.size
+            pos: self.pos 
+    Header:
+        size_hint_y: .08
+    VisibleContent:
+        size_hint_y: .86
+    Footer:
+        size_hint_y: .06
+        
+<Footer>:
+    GuideLink:
+        guide: 'GO_BUDGET'
+    GuideLink:
+        guide: 'GO_RECIPES'
+    GuideLink:
+        guide: 'GO_PROGRESS'
+    GuideLink:
+        guide: 'GO_LIST'
+    GuideLink:
+        guide: 'GO_GLIDER'
+
+<Link>:
+    color: (0,0,0,1)
+    background_color: (.89,.89,.89,1)
+
+<ContentBox>:
+    GridLayout:
+        id: cont_box
+        cols: 1
+
+<HeaderLabel>:
+    Label:
+        id: header
+        canvas.before:
+            Color:
+                rgba: (.03,.67,.14,1)
+            Rectangle:
+                size: self.size
+                pos: self.pos

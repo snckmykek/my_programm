@@ -1,0 +1,31 @@
+<ProductsList>:
+    background: 'images/ProductsListBackground.png'
+    size_hint: (1, 1)
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            size_hint_y: None
+            height: 50
+            FlatButton:
+                text: 'x'
+                on_release: root.dismiss()
+                size_hint_x: .2
+            Label:
+                color: (0,0,0,1)
+                text: 'Список продуктов'.encode('cp1251').decode('utf-8')
+                size_hint_x: .8
+        VisibleListOfProducts:
+        FlatButton:
+            text: 'Добавить продукт'.encode('cp1251').decode('utf-8')
+            on_release: root.open_AllProducts()
+            size_hint_y: None
+            height: 50
+
+<ListOfProducts>:
+    StackLayout:
+        height: self.minimum_height
+        id: products
+        orientation: 'lr-tb'
+        padding: (0,3)
+        size_hint: (1, None)
+        spacing: 3

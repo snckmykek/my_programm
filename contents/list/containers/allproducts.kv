@@ -1,0 +1,45 @@
+<AllProducts>:
+    background: 'images/ProductsListBackground.png'
+    size_hint: (1, 1)
+    BoxLayout:
+        orientation: 'vertical'
+        BoxLayout:
+            size_hint_y: None
+            height: 50
+            FlatButton:
+                text: 'x'
+                on_release: root.dismiss()
+                size_hint_x: .2
+            Label:
+                color: (0,0,0,1)
+                text: 'Все продукты'.encode('cp1251').decode('utf-8')
+                size_hint_x: .8
+        BoxLayout:
+            size_hint_y: None
+            height: 50
+            TextInput:
+                color: (0,0,0,.3)
+                id: text_inp_new_prod
+                on_text: root.resort_prods()
+                on_touch_down: root.clear_text()
+                size_hint_x: .8
+                text: 'Начните вводить название продукта'.encode('cp1251').decode('utf-8')
+            FlatButton:
+                on_release: root.add_product_in_list_callback()
+                size_hint_x: .2
+                text: 'New'
+        VisibleAllProducts:
+        FlatButton:
+            text: 'Закрыть'.encode('cp1251').decode('utf-8')
+            on_release: root.dismiss()
+            size_hint_y: None
+            height: 50
+
+<ListOfAllProducts>:
+    StackLayout:
+        height: self.minimum_height
+        id: all_products
+        orientation: 'lr-tb'
+        padding: (0,3)
+        size_hint: (1, None)
+        spacing: 3

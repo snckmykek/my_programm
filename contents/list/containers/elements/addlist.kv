@@ -1,0 +1,12 @@
+<AddList>:
+    size_hint: (.8, .15)
+    BoxLayout:
+        orientation: 'vertical'
+        TextInput:
+            color: (0,0,0,.1)
+            id: text_inp
+            on_touch_down: root.clear_text_inp()
+            text: 'Введите имя списка'.encode('cp1251').decode('utf-8')
+        FlatButton:
+            on_release: root.add_list_close_callback()
+            text: 'Ok'
