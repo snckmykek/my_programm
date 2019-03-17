@@ -1,0 +1,19 @@
+<AllProductSetting>:
+    size_hint: (1, 1)
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            height: 50
+            text: root.name_of_prod
+            size_hint_y: None
+        BoxLayout:
+            orientation: 'vertical'
+            AllProductSettingTextInputPrice:
+                id: price_text_inp
+            AllProductSettingTextInputQty:
+                id: qty_text_inp
+        FlatButton:
+            height: 50
+            on_release: root.add_product_setting_close_callback()
+            size_hint_y: None
+            text: 'Ok'

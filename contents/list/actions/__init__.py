@@ -51,3 +51,6 @@ def add_listfilter(p_id, price = None, qty = 1):
 
 def strikethrough_text(p_id):
     return Action('STRIKETHOUGH_TEXT', p_id = p_id)
+
+def setting_product(p_id, price, qty):
+    return Action('SETTING_PRODUCT', p_id = p_id, price = price, qty = qty)

@@ -1,7 +1,7 @@
 <AllProduct>:
-    ToggleButton:
-        background_normal: ''
-        background_down: 'images/ProductSelectedBackground.png'
+    height: 50
+    size_hint_y: None
+    AllProductButton:
         color:(0,0,0,1)
         halign: 'left'
         id: prod_button
@@ -9,8 +9,11 @@
         size_hint_x: .8
         text_size: self.size
         valign: 'middle'
-        on_release: self.release_callback2(root.p_id)
-    AllProductButton:
+        on_short_press: self.release_callback2(root.p_id)
+    Button:
+        background_color: (1,1,1,1)
+        background_down: ''
+        background_normal: ''
         color:(0,0,0,1)
         id: remove_button
         size_hint_x: .2
