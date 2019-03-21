@@ -24,5 +24,5 @@ class ListOfProducts(ScrollView):
                 p.ids.remove_button.background_color = (1,1,1,1)
             p.ids.prod_button.release_callback2 = self.item_callback_strikethrough
             p.ids.prod_button.text = prod['text']
-            p.ids.remove_button.release_callback = self.item_callback_del
+            p.ids.remove_button.release_callback = self.item_callback_change
             container.add_widget(p)

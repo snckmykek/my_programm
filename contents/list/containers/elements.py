@@ -1,12 +1,13 @@
-from contents.list.actions import add_list, add_listfilter, del_listfilter
+from contents.list.actions import add_list
 from contents.list.storelist import store
-from kivy.properties import ObjectProperty, NumericProperty
+from kivy.properties import ObjectProperty, NumericProperty, StringProperty
 from kivy.clock import Clock
 from kivy.uix.behaviors import ButtonBehavior
 from kivy.uix.button import Button
 from kivy.uix.label import Label
 from kivy.uix.modalview import ModalView
 from kivy.uix.textinput import TextInput
+import time
 
 from kivy.lang import Builder
 Builder.load_file(r'contents/list/containers/elements.kv')
@@ -60,13 +61,20 @@ class AllProductButton(Button): #Кнопка-элемент(часть) вид�
     def on_short_press(self, *largs):
         pass
 
-class AllProductSettingTextInputPrice(TextInput): #ну короче понятно для чего
-    pass
+class AllProductSettingTextInput(TextInput): #ну короче понятно для чего
 
-class AllProductSettingTextInputQty(TextInput):
-
-    def click_text_inp(self):
-        self.parent.parent.parent.clear_text_inp(self) #3 parent eto pizdec
+    name_text_inp = StringProperty('')
+    names = {'price': 'Цена', 'qty': 'Количество', 'units': 'Единицы'}
+    
+    def on_focus(self, instance, value):
+        if value:
+            if (self.text == self.names[self.name_text_inp]) or (self.text == '0'):
+                self.text = ''
+                self.foreground_color = (0,0,0,1)
+        else:
+            if (self.text == '') or (self.text == '0'):
+                self.text = self.names[self.name_text_inp]
+                self.foreground_color = (0,0,0,.35)
 
 class FlatButton(ButtonBehavior, Label): #Просто кнопка, юзается где угодно
     pass

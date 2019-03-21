@@ -11,9 +11,9 @@ class AllProduct(BoxLayout):
     release_callback = ObjectProperty(None)
     release_callback2 = ObjectProperty(None)
     p_id = NumericProperty(None)
-    price = NumericProperty(None)
-    qty = NumericProperty(None)
-    name_of_prod = StringProperty(None)
+    price = NumericProperty(0)
+    qty = NumericProperty(0)
+    name_of_prod = StringProperty('')
 
     all_product_setting_popup = AllProductSetting()
 

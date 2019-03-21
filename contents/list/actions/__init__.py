@@ -22,12 +22,12 @@ def add_list(text):
 def remove_list(l_id):
     return Action('REMOVE_LIST', l_id = l_id)
 
-def add_product(text, parent_id, price = None, qty = 1, selected = True,
-                strikethrough = False):
+def add_product(text, parent_id, price = 0, qty = 1, strikethrough = False):
     global next_prod_id
-    listfilter = {parent_id: {'price': price, 'qty': qty}}
+    info = {parent_id: {'price': price, 'qty': qty}}
+    listfilter = [parent_id]
     action = Action('ADD_PRODUCT', p_id = next_prod_id, text = text,
-                    selected = selected, listfilter = listfilter,
+                    listfilter = listfilter, info = info,
                     strikethrough = strikethrough)
     next_prod_id += 1
     return action
@@ -38,19 +38,14 @@ def remove_product(p_id):
 def change_vis_filter(l_id):
     return Action('CHANGE_VIS_FILTER', l_id = l_id)
 
-def del_listfilter(p_id):
-    return Action('DEL_LISTFILTER', p_id = p_id)
+def change_listfilter(p_id):
+    return Action('CHANGE_LISTFILTER', p_id = p_id)
 
 def resort_products(text_for_sort):
     return Action('RESORT_PRODUCTS', text_for_sort = text_for_sort)
 
-def add_listfilter(p_id, price = None, qty = 1):
-    new_lf_value = {'price': price, 'qty': qty}
-    return Action('ADD_LISTFILTER', p_id = p_id,
-                  new_listfilter_value = new_lf_value)
-
 def strikethrough_text(p_id):
     return Action('STRIKETHOUGH_TEXT', p_id = p_id)
 
-def setting_product(p_id, price, qty):
+def setting_product(p_id, price, qty): 
     return Action('SETTING_PRODUCT', p_id = p_id, price = price, qty = qty)
