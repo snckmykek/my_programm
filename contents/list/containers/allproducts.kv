@@ -17,11 +17,10 @@
         BoxLayout:
             size_hint_y: None
             height: 50
-            TextInput:
+            AllProductsTextInput:
                 color: (0,0,0,.3)
                 id: text_inp_new_prod
                 on_text: root.resort_prods()
-                on_touch_down: root.clear_text()
                 size_hint_x: .8
                 text: 'Начните вводить название продукта'.encode('cp1251').decode('utf-8')
             FlatButton:

@@ -1,18 +1,43 @@
 <AllProduct>:
-    ToggleButton:
-        background_normal: ''
-        background_down: 'images/ProductSelectedBackground.png'
+    height: 50
+    size_hint_y: None
+    AllProductButton:
         color:(0,0,0,1)
         halign: 'left'
         id: prod_button
         padding: (7,0)
-        size_hint_x: .8
+        size_hint_x: .6
         text_size: self.size
         valign: 'middle'
-        on_release: self.release_callback2(root.p_id)
-    AllProductButton:
+        on_short_press: self.release_callback2(root.p_id)
+    BoxLayout:
+        size_hint_x: .3
+        Button:
+            background_color: (1,1,1,1)
+            background_down: ''
+            background_normal: ''
+            color:(0,0,0,.35)
+            id: qty_button
+            text: ''
+            text_size: self.size
+            halign: 'left'
+            valign: 'middle'
+        Button:
+            background_color: (1,1,1,1)
+            background_down: ''
+            background_normal: ''
+            color:(0,0,0,.35)
+            id: price_button
+            text: ''
+            text_size: self.size
+            halign: 'right'
+            valign: 'middle'
+    Button:
+        background_color: (1,1,1,1)
+        background_down: ''
+        background_normal: ''
         color:(0,0,0,1)
         id: remove_button
-        size_hint_x: .2
+        size_hint_x: .1
         text: 'X'
         on_release: self.release_callback(root.p_id)

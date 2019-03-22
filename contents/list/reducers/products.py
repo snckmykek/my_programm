@@ -4,18 +4,18 @@ from copy import deepcopy
 def products(action, state=[]):
     if action.action_type == 'ADD_PRODUCT':
         return state + [{'p_id': action.p_id, 'text': action.text,
-                         'listfilter': action.listfilter,
+                         'info': action.info, 'listfilter': action.listfilter,
                          'strikethrough':action.strikethrough}]
-    
-    if action.action_type == 'ADD_LISTFILTER':
-        action.vis_fil = np.load('data.npy').item()['visibility_filter']
+
+    elif action.action_type == 'SETTING_PRODUCT':
         new_state = []
+        vis_fil = np.load('data.npy').item()['visibility_filter']
         for prod in state:
             if prod['p_id'] == action.p_id:
-                new_listfilter = {action.vis_fil: action.new_listfilter_value}
-                prod['listfilter'].update(new_listfilter)
+                prod['info'][vis_fil] = {'price': action.price,
+                                                  'qty': action.qty}
             new_state += [{'p_id': prod['p_id'], 'text': prod['text'],
-                           'listfilter': prod['listfilter'],
+                           'info': prod['info'], 'listfilter': prod['listfilter'],
                            'strikethrough': prod['strikethrough']
                            }]
         return new_state
@@ -25,19 +25,36 @@ def products(action, state=[]):
         for prod in state:
             if prod['p_id'] != action.p_id:           
                 new_state += [{'p_id': prod['p_id'], 'text': prod['text'],
+                               'info': prod['info'],
                                'listfilter': prod['listfilter'],
                                'strikethrough': prod['strikethrough']
                                }]
         return new_state
 
-    elif action.action_type == 'DEL_LISTFILTER':
+    elif action.action_type == 'CHANGE_LISTFILTER':
         new_state = []
+        vis_fil = np.load('data.npy').item()['visibility_filter']
         for prod in state:
             if prod['p_id'] == action.p_id:
-                prod['listfilter'].pop(np.load('data.npy').item()['visibility_filter'])
+                try:
+                    prod['listfilter'].remove(vis_fil)
+                except:
+                    prod['listfilter'].append(vis_fil)
                 prod['strikethrough'] = False
             new_state += [{'p_id': prod['p_id'], 'text': prod['text'],
-                           'listfilter': prod['listfilter'],
+                           'info': prod['info'],'listfilter': prod['listfilter'],
+                           'strikethrough': prod['strikethrough']}]
+        return new_state
+
+    elif action.action_type == 'REMOVE_LIST':
+        new_state = []
+        for prod in state:
+            if action.l_id in prod['info'].keys():
+                prod['info'].pop(action.l_id)
+                if action.l_id in prod['listfilter']:
+                    prod['listfilter'].remove(action.i_id)
+            new_state += [{'p_id': prod['p_id'], 'text': prod['text'],
+                           'info': prod['info'], 'listfilter': prod['listfilter'],
                            'strikethrough': prod['strikethrough']}]
         return new_state
         

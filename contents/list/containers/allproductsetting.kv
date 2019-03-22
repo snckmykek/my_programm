@@ -1,0 +1,53 @@
+<AllProductSetting>:
+    background: ''
+    size_hint: (1, 1)
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            size_hint_y: .2
+        Label:
+            canvas.before:
+                Color:
+                    rgba: (.93,.93,.93,1)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            color: (0,0,0,1)
+            text: root.name_of_prod
+            size_hint_y: .2
+        BoxLayout:
+            size_hint_y: .2
+            orientation: 'vertical'
+            BoxLayout:
+                AllProductSettingTextInput:
+                    name_text_inp: 'qty'
+                    id: qty_text_inp
+                    text: 'Количество'.encode('cp1251').decode('utf-8') if (root.qty == 0) else str(root.qty)
+                Button:
+                    background_color: (1,1,1,1)
+                    background_down: ''
+                    background_normal: ''
+                    color: (0,0,0,1)
+                    id: units_button
+                    text: root.units
+                    on_release: root.change_unit(self)
+            BoxLayout:
+                AllProductSettingTextInput:
+                    name_text_inp: 'price'
+                    id: price_text_inp
+                    text: 'Цена'.encode('cp1251').decode('utf-8') if (root.price == 0) else str(root.price)
+                Button:
+                    background_color: (.95,.90,1,1)
+                    background_down: ''
+                    background_normal: ''
+                    color: (0,0,0,1)
+                    id: rating_button
+                    text: '2.7'
+                    on_release: root.change_unit(self)
+        Label:
+            size_hint_y: .4
+        FlatButton:
+            height: 50
+            on_release: root.add_product_setting_close_callback()
+            size_hint_y: None
+            text: 'Ok'
